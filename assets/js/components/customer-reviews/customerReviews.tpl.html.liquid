@@ -1,0 +1,44 @@
+<h4>{{ 'customer_reviews.list_header' | t }}</h4>
+<div>
+    <button type="button" name="showSubmitReview" id="showSubmitReview" class="btn btn-clearfix AddShopCart" ng-click="$ctrl.showSubmitReviewForm()" ng-disabled="!$ctrl.submitReviewAvailable">
+                <span id="submitReviewText">{{ 'customer_reviews.write_review' | t }}</span>
+    </button>
+    <p ng-show ="$ctrl.message">{% raw %}{{$ctrl.message}}{% endraw %}</p>
+</div>
+<div ng-show="$ctrl.submitReviewFormVisible">
+    <form ng-submit="$ctrl.submit()" name="submitReviewForm">
+        <span ng-init="$ctrl.setForm(submitReviewForm)"></span>
+
+        <label for="userName" class="form-label">{{ 'customer_reviews.form.author_nickname_label' | t }}</label>
+        <input class="input-group-field ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" id="userName" name="userName" placeholder="{{ 'customer_reviews.form.author_nickname_field_placeholder' | t }}" required="required" type="text" ng-model="$ctrl.authorNickname">
+        <div class="alert alert-error" ng-if="(submitReviewForm.$submitted || submitReviewForm.userName.$dirty) && submitReviewForm.userName.$error.required"> {{ 'customer_reviews.form.validation.enter_author_nickname' | t }} </div>
+
+        <label for="rating" class="form-label">{{ 'customer_reviews.form.rating_label' | t }}</label>
+        <input class="input-group-field ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" id="rating" name="rating" placeholder="{{ 'customer_reviews.form.rating_field_placeholder' | t }}" required="required" type="text" ng-model="$ctrl.rating">
+        <div class="alert alert-error" ng-if="(submitReviewForm.$submitted || submitReviewForm.rating.$dirty) && submitReviewForm.rating.$error.required"> {{ 'customer_reviews.form.validation.enter_rating' | t }} </div>
+
+        <label for="content" class="form-label">{{ 'customer_reviews.form.content_label' | t }}</label>
+        <textarea class="input-group-field ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" id="content" name="content" placeholder="{{ 'customer_reviews.form.content_field_placeholder' | t }}" required="required" type="text" ng-model="$ctrl.content">
+        </textarea>
+        <div class="alert alert-error" ng-if="(submitReviewForm.$submitted || submitReviewForm.content.$dirty) && submitReviewForm.content.$error.required"> {{ 'customer_reviews.form.validation.content_is_empty' | t }} </div>
+
+        <button type="button" name="submitReview" id="submitReview" class="btn btn-clearfix AddShopCart" ng-click="$ctrl.submit(submitReviewForm)" ng-disabled="!$ctrl.submitReviewAvailable">
+            <span id="submitReviewText">{{ 'customer_reviews.form.submit' | t }}</span>
+        </button>
+
+        <button type="button" name="cancelSubmitReview" id="cancelSubmitReview" class="btn btn-clearfix" ng-click="$ctrl.cancel(submitReviewForm)" ng-disabled="!$ctrl.submitReviewAvailable">
+            <span id="cancelSubmitReviewText">{{ 'customer_reviews.form.cancel' | t }}</span>
+        </button>
+        
+    </form>
+</div>
+<p ng-repeat="review in $ctrl.customerReviews">
+    <span>{{ 'customer_reviews.rating' | t }}</span><span ng-bind="review.rating"></span>
+    <br>
+    <span ng-bind="review.content"></span>
+    <br>
+    {% raw %}{{ review.authorNickname }}{% endraw %}
+    <time pubdate datetime="{% raw %}{{review.createdDate | date: '%Y-%m-%d' }}{% endraw %}">
+        <em class="text-light">{% raw %}{{ review.createdDate | date: format: 'month_day_year' }}{% endraw %} </em>
+    </time>
+</p>

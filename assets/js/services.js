@@ -253,3 +253,17 @@ storefrontApp.service('orderService', ['$http', function ($http) {
         }
     }
 }]);
+
+storefrontApp.service('customerReviewService', ['$http', function ($http) {
+    return {
+        addCustomerReview: function (customerReview) {
+            return $http.post('storefrontapi/customerReviews', customerReview);
+        },
+        search: function (criteria) {
+            return $http.post('storefrontapi/customerReviews/search', criteria);
+        },
+        checkIfSubmitAvailable: function () {
+            return $http.get('storefrontapi/customerReviews/checksubmit');
+        }
+    }
+}]);

@@ -244,7 +244,7 @@
     "wishlist": {
         "general": {
             "title": "Lists",
-            "my_lists":  "Private lists",
+            "my_lists": "Private lists",
             "friends_lists": "Friends lists",
             "select_list": "Please select list",
             "remove": "Remove",
@@ -734,6 +734,27 @@
         "list": {
             "add_to_myList": " Add to list"
         }
+
+    },
+    "customer_reviews": {
+        "form": {
+            "submit": "Submit",
+            "cancel": "Cancel",
+            "content_label": "Content",
+            "content_field_placeholder": "submit your review",
+            "author_nickname_label": "Your nickname",
+            "author_nickname_field_placeholder": "enter your name",
+            "rating_field_placeholder": "enter rating",
+            "rating_label": "Rating",
+            "validation": {
+                "content_is_empty": "Content is empty",
+                "enter_author_nickname": "Enter your name",
+                "enter_rating": "Enter rating"
+            }
+        },
+        "write_review": "Write a customer review",
+        "list_header": "Customer reviews",
+        "rating":  "Rating:"
     },
     "gift_cards": {
         "issued": {
